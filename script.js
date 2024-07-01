@@ -1,5 +1,4 @@
 // Computer choice
-
 function getComputerChoice() {
   let computerChoice;
   let randomChoice = Math.random();
@@ -20,13 +19,12 @@ function getHumanChoice() {
   return humanChoice;
 }
 
-//play round
-let humanScore = 0;
-let computerScore = 0;
 function playGame() {
-  let computer = getComputerChoice();
-  let human = getHumanChoice();
+  // keeping score
+  let humanScore = 0;
+  let computerScore = 0;
 
+  //play round
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === "" || null) {
       console.log("You must provide an input");
@@ -69,15 +67,18 @@ function playGame() {
       `Round scores - Human: ${humanScore}. Computer: ${computerScore}`
     );
   }
-  playRound(human, computer);
+
+  for (let index = 1; index <= 5; index++) {
+    let computer = getComputerChoice();
+    let human = getHumanChoice();
+    playRound(human, computer);
+  }
+
+  if (humanScore > computerScore) {
+    console.log(`Human wins!`);
+  } else if (computerScore > humanScore) {
+    console.log(`Computer wins!`);
+  } else console.log(`A draw. Play Again?`);
 }
 
-for (let index = 1; index <= 5; index++) {
-  playGame();
-}
-
-if (humanScore > computerScore) {
-  console.log(`Human wins!`);
-} else if (computerScore > humanScore) {
-  console.log(`Computer wins!`);
-} else console.log(`A draw. Play Again?`);
+playGame();
