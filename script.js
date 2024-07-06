@@ -1,29 +1,26 @@
-// Computer choice
-function getComputerChoice() {
-  let computerChoice;
-  let randomChoice = Math.random();
-  if (randomChoice < 0.34) {
-    computerChoice = "rock";
-  } else if (randomChoice >= 0.34 && randomChoice < 0.65) {
-    computerChoice = "paper";
-  } else if (randomChoice >= 0.65) {
-    computerChoice = "scissors";
+// query selectors
+
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const gameBtns = [...document.querySelectorAll("button")];
+
+document.addEventListener("click", (e) => {
+  if (e.target === rock) {
+    playGame("rock");
   }
-  return computerChoice;
-}
+  if (e.target === paper) {
+    getComputerChoice("paper");
+  }
+  if (e.target === scissors) {
+    getComputerChoice("scissors");
+  }
+});
 
-// my choice
-
-function getHumanChoice() {
-  let humanChoice = prompt("Rock, paper, or scissors?", "");
-  return humanChoice;
-}
-
-function playGame() {
+function playGame(pickChoice) {
   // keeping score
   let humanScore = 0;
   let computerScore = 0;
-
   //play round
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === "" || null) {
@@ -70,7 +67,7 @@ function playGame() {
 
   for (let index = 1; index <= 5; index++) {
     let computer = getComputerChoice();
-    let human = getHumanChoice();
+    let human = getHumanChoice(pickChoice);
     playRound(human, computer);
   }
 
@@ -81,4 +78,23 @@ function playGame() {
   } else console.log(`A draw. Play Again?`);
 }
 
-playGame();
+// my choice
+
+function getHumanChoice(choice) {
+  let humanChoice = choice;
+  return humanChoice;
+}
+
+// Computer choice
+function getComputerChoice() {
+  let computerChoice;
+  let randomChoice = Math.random();
+  if (randomChoice < 0.34) {
+    computerChoice = "rock";
+  } else if (randomChoice >= 0.34 && randomChoice < 0.65) {
+    computerChoice = "paper";
+  } else if (randomChoice >= 0.65) {
+    computerChoice = "scissors";
+  }
+  return computerChoice;
+}
