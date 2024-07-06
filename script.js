@@ -29,20 +29,23 @@ document.addEventListener("click", (e) => {
   let computer = getComputerChoice();
   playRound(human, computer);
   count++;
-  pScore.textContent = `Round ${count}`;
+  pScore.textContent = `Round ${count}: Human: ${humanScore} Computer: ${computerScore}`;
 
   if (count === 5) {
+    finalResult.style.fontWeight = "bold";
     if (humanScore > computerScore) {
-      finalResult.textContent = "Human wins!";
+      finalResult.textContent = "Final result: Human wins!";
       body.appendChild(finalResult);
     } else if (computerScore > humanScore) {
-      finalResult.textContent = "Computer wins!";
+      finalResult.textContent = "Final result: Computer wins!";
       body.appendChild(finalResult);
     } else {
-      finalResult.textContent = "A draw. Play again?";
+      finalResult.textContent = "Final result: A draw. Play again?";
       body.appendChild(finalResult);
     }
     count = 0;
+    humanScore = 0;
+    computerScore = 0;
 
     setTimeout(() => {
       pScore.remove();
